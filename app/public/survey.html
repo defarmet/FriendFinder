@@ -26,8 +26,48 @@
 			<input type="text" class="form-control" id="name">
 		</div>
 		<div class="form-group">
-			<label for="role">Photo</label>
+			<label for="photo">Photo</label>
 			<input type="text" class="form-control" id="photo">
+		</div>
+		<div class="form-group">
+			<label for="q1"></label>
+			<input type="number" id="q1" min="1" max="5">
+		</div>
+		<div class="form-group">
+			<label for="q2"></label>
+			<input type="number" id="q2" min="1" max="5">
+		</div>
+		<div class="form-group">
+			<label for="q3"></label>
+			<input type="number" id="q3" min="1" max="5">
+		</div>
+		<div class="form-group">
+			<label for="q4"></label>
+			<input type="number" id="q4" min="1" max="5">
+		</div>
+		<div class="form-group">
+			<label for="q5"></label>
+			<input type="number" id="q5" min="1" max="5">
+		</div>
+		<div class="form-group">
+			<label for="q6"></label>
+			<input type="number" id="q6" min="1" max="5">
+		</div>
+		<div class="form-group">
+			<label for="q7"></label>
+			<input type="number" id="q7" min="1" max="5">
+		</div>
+		<div class="form-group">
+			<label for="q8"></label>
+			<input type="number" id="q8" min="1" max="5">
+		</div>
+		<div class="form-group">
+			<label for="q9"></label>
+			<input type="number" id="q9" min="1" max="5">
+		</div>
+		<div class="form-group">
+			<label for="q10"></label>
+			<input type="number" id="q10" min="1" max="5">
 		</div>
 		</form>
 		<br>
@@ -39,19 +79,29 @@
 	</div>
 
 	<script type="text/javascript">
-		$("#submit").on("click", function(e)
-		{
-			e.preventDefault();
-			var new_friend = {
-				name: $("#name").val().trim(),
-				photo: $("#photo").val().trim(),
-				score: []
-			};
+	$("#submit").on("click", function(e)
+	{
+		e.preventDefault();
+		var scores = [];
+		for (var i = 1; i <= 10; i++) {
+			scores.push($("#q" + i).val().trim());
+			$("#q" + i).val("");
+		}
 
-			$.post("/api/friends", new_friend).then(function(data)
-			{
-			});
+		var new_friend = {
+			name: $("#name").val().trim(),
+			photo: $("#photo").val().trim(),
+			scores: scores
+		};
+
+		$("#name").val("");
+		$("#photo").val("");
+
+		$.post("/api/friends", new_friend).then(function(data)
+		{
+			console.log(data);
 		});
+	});
 	</script>
 </body>
 </html>
