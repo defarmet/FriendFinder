@@ -100,7 +100,7 @@
 
 		$.post("/api/friends", new_friend).then(function(data)
 		{
-			console.log(data);
+			alert("Your new friend: " + data.name);
 		});
 	});
 	</script>

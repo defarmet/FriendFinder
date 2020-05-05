@@ -41,6 +41,6 @@ module.exports = function(app)
 		current = req.body;
 		friends.forEach(get_best);
 		friends.push(current);
-		return res.json(best);
+		return res.json(best.friend);
 	});
 }
